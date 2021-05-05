@@ -48,11 +48,22 @@ trait Property
         $dateTime = new \DateTime(date('m/d/Y'));
 
         // make query
-        $reservations = db('reservation')->get('property = ? and created = ? or checkindate = ?');
-        $reservations->bind($this->property, $dateTime->getTimestamp(), $dateTime->getTimestamp());
+        $reservations = db('reservation')->get('created,checkindate')->where('property = ?')->bind($this->property)->go();
+
+        // c, $dateTime->getTimestamp(), 0
+        // @var int $total
+        $total = 0;
+
+        if ($reservations->rowCount() > 0)
+        {
+            while($row = $reservations->fetch(FETCH_OBJ))
+            {
+                if ($row->created == $dateTime->getTimestamp() || $row->checkindate == $dateTime->getTimestamp()) $total++;
+            }
+        }
 
         // update
-        $this->reservationsToday = $reservations->go()->rowCount();
+        $this->reservationsToday = $total;
     }
 
     /**
@@ -153,10 +164,10 @@ trait Property
         $reviews = db('reviews')->get('property = ?', $this->property)->go();
 
         // sum all
-        while ($row = $reviews->fetch(FETCH_OBJ)) $reviewScore += intval($row->star);
+        if ($reviews->rowCount() > 0) while ($row = $reviews->fetch(FETCH_OBJ)) $reviewScore += intval($row->star);
 
         // update
-        $this->totalReviewScore = ($reviewScore / $reviews->rowCount());
+        $this->totalReviewScore = $reviews->rowCount() > 0 ? ($reviewScore / $reviews->rowCount()) : 0;
         $this->totalReviewCount = $reviews->rowCount();
     }
 

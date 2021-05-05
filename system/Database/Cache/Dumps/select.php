@@ -1,14 +1,11 @@
 <?php
 
 return array (
-  'aadc5427b3ec6e19f109b61af27c4057' => 
+  '7842206cffcdc109a5b5e94031a5db84' => 
   array (
-    'query' => 'SELECT * FROM reservation WHERE property = :property and created = :created or checkindate = :checkindate ',
+    'query' => 'SELECT created,checkindate FROM reservation {where}',
     'bind' => 
     array (
-      'property' => '',
-      'created' => '',
-      'checkindate' => '',
     ),
   ),
   'e31d9862580adf9b6b3da6af6c936b06' => 
@@ -38,22 +35,22 @@ return array (
       'propertyid' => '38v92sy54fnhqc33',
     ),
   ),
-  '70b516496526a986cced80e2ca279c93' => 
+  '000fa58715b53c37dfca0f2791288f20' => 
   array (
     'query' => 'SELECT * FROM lodging WHERE propertyid = :propertyid and checkout = :checkout ',
     'bind' => 
     array (
       'propertyid' => '38v92sy54fnhqc33',
-      'checkout' => 1609282800,
+      'checkout' => 1617231600,
     ),
   ),
-  '4f2fe478a5ab05a93c532d19387dbae3' => 
+  '08995a7fbda7f472a945c873776c830d' => 
   array (
     'query' => 'SELECT * FROM lodging WHERE propertyid = :propertyid and checkout < :checkout ',
     'bind' => 
     array (
       'propertyid' => '38v92sy54fnhqc33',
-      'checkout' => 1609352797,
+      'checkout' => 1617254235,
     ),
   ),
   '337e026d80273ed4104641cd9e3e6fdf' => 

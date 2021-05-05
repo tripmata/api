@@ -121,7 +121,28 @@ class Property implements ResourceInterface
             $gallery = json_decode($this->property->gallery);
 
             // can we remove
-            if (isset($gallery[$index])) unset($gallery[$index]);
+            if (is_object($gallery)) :
+
+                // @var array $images 
+                $images = [];
+
+                // run through
+                foreach ($gallery as $galleryIndex => $image) if ($galleryIndex != $index) :
+
+                    // append image
+                    $images[] = $image;
+
+                endif;
+
+                // update gallery
+                $gallery = $images;
+
+            elseif (is_array($gallery)) :
+
+                // remove image
+                if (isset($gallery[$index])) unset($gallery[$index]);
+
+            endif;
 
             // save now
             $this->property->update(['gallery' => json_encode($gallery)]);
@@ -162,8 +183,27 @@ class Property implements ResourceInterface
                     // get property gallery
                     $gallery = json_decode($this->property->gallery);
 
-                    // can we replace
-                    $gallery[$index] = $image;
+                    // do we have an array
+                    if (is_object($gallery)) :
+
+                        // @var array $images 
+                        $images = [];
+
+                        // add others
+                        foreach ($gallery as $galleryIndex => $galleryImage) $images[] = $galleryImage;
+
+                        // replace image
+                        $images[$index] = $image;
+
+                        // update gallery
+                        $gallery = $images;
+
+                    elseif (is_array($gallery)) :
+
+                        // can we replace
+                        $gallery[$index] = $image;
+
+                    endif;
 
 
                     // save now
