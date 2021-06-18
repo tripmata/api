@@ -56,7 +56,7 @@ trait Property
 
         if ($reservations->rowCount() > 0)
         {
-            while($row = $reservations->fetch(FETCH_OBJ))
+            while ($row = $reservations->fetch(FETCH_OBJ))
             {
                 if ($row->created == $dateTime->getTimestamp() || $row->checkindate == $dateTime->getTimestamp()) $total++;
             }

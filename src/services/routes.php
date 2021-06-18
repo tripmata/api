@@ -30,3 +30,4 @@ Route::any('*', function(array $request){
 // handle resource
 Route::resource(Resources\Statistics::class);
 Route::resource(Resources\Property::class);
+Route::resource(Resources\Avaliability::class);

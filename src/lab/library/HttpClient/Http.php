@@ -164,6 +164,7 @@ class Http
 
         endif;
     }
+    
 
     // add file
     private function addFileToRequest($data)
