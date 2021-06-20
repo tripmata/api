@@ -57,6 +57,11 @@ DefaultLanguage en
 
 </IfModule>
 
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Vary "Origin"
+</IfModule> 
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} !-f

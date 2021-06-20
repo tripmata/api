@@ -179,6 +179,10 @@ class Avaliability implements ResourceInterface
         // avaliable rooms
         $avaliableRooms = [];
 
+        // format day
+        $day = strlen(strval($day)) > 10 ? intval(substr(strval($day), 0, 10)) : $day;
+        $tomorrow = strlen(strval($tomorrow)) > 10 ? intval(substr(strval($tomorrow), 0, 10)) : $tomorrow;
+
         // get all rooms
         if ($rooms->rowCount() > 0) while($room = $rooms->fetch(FETCH_OBJ)) :
 
