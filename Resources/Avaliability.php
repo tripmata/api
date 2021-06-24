@@ -164,7 +164,7 @@ class Avaliability implements ResourceInterface
      * @param string $checkIn
      * @param string $checkOut
      */
-    public function printPropertyAvaliableRooms(string $roomCategoryId, string $propertyId, int $day, int $tomorrow)
+    public function printPropertyAvaliableRooms(string $roomCategoryId, string $propertyId, string $day, string $tomorrow)
     {
         // check get room number and roomid
         $rooms = db('room')->get('`number`,roomid,propertyid')->where('category = ? and status = ?', $roomCategoryId, 1)
@@ -180,8 +180,8 @@ class Avaliability implements ResourceInterface
         $avaliableRooms = [];
 
         // format day
-        $day = strlen(strval($day)) > 10 ? intval(substr(strval($day), 0, 10)) : $day;
-        $tomorrow = strlen(strval($tomorrow)) > 10 ? intval(substr(strval($tomorrow), 0, 10)) : $tomorrow;
+        $day = strlen(strval($day)) > 10 ? substr(strval($day), 0, 10) : $day;
+        $tomorrow = strlen(strval($tomorrow)) > 10 ? substr(strval($tomorrow), 0, 10) : $tomorrow;
 
         // get all rooms
         if ($rooms->rowCount() > 0) while($room = $rooms->fetch(FETCH_OBJ)) :
@@ -236,6 +236,7 @@ class Avaliability implements ResourceInterface
                 ];
 
             endwhile;
+
 
             // cannot find room
             if (!isset($result[$room->number])) :
@@ -533,6 +534,9 @@ class Avaliability implements ResourceInterface
             endif;
 
         endforeach;
+
+        // update avaliability
+        if ($avaliability == 0 and count($avaliableRooms) > 0) $avaliability = count($avaliableRooms);
 
         // print data
         render([
