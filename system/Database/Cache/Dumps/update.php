@@ -642,4 +642,36 @@ return array (
       'calendar' => '{\\"66p1y9wk6wx1841h\\":{\\"1622588400\\":{\\"Availability\\":\\"true\\",\\"Standard Rate (NGN)\\":\\"17000\\"},\\"1622502000\\":{\\"Availability\\":\\"true\\"},\\"1622674800\\":{\\"Availability\\":\\"true\\"}},\\"ug1h5b4496zm22iw\\":{\\"1622674800\\":{\\"Availability\\":\\"true\\"},\\"1622761200\\":{\\"Availability\\":\\"true\\"}},\\"6n98x99g6l7gi6t1\\":{\\"1622674800\\":{\\"Inventory\\":\\"3\\"}}}',
     ),
   ),
+  '3a0322a07a74db538aaf6b97688faa0b' => 
+  array (
+    'query' => 'UPDATE room_avaliability SET calendar = :calendar  {where}',
+    'bind' => 
+    array (
+      'calendar' => '{\\"v35kemg1dw53o2f1\\":{\\"1625698800\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}}}',
+    ),
+  ),
+  'f7a13662c368c3798c2c2ad7e1c3cddf' => 
+  array (
+    'query' => 'UPDATE room_avaliability SET calendar = :calendar  {where}',
+    'bind' => 
+    array (
+      'calendar' => '{\\"v35kemg1dw53o2f1\\":{\\"1625698800\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}},\\"x2d3995wfc615fi1\\":{\\"1627167600\\":{\\"Availability\\":\\"false\\"}}}',
+    ),
+  ),
+  '5eacac2852fe323894404c6774fa0779' => 
+  array (
+    'query' => 'UPDATE room_avaliability SET calendar = :calendar  {where}',
+    'bind' => 
+    array (
+      'calendar' => '{\\"v35kemg1dw53o2f1\\":{\\"1625698800\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}},\\"x2d3995wfc615fi1\\":{\\"1627167600\\":{\\"Availability\\":\\"true\\"}}}',
+    ),
+  ),
+  'b3393e9f34cd15762870570d9b0a4788' => 
+  array (
+    'query' => 'UPDATE room_avaliability SET calendar = :calendar  {where}',
+    'bind' => 
+    array (
+      'calendar' => '{\\"66p1y9wk6wx1841h\\":{\\"1622588400\\":{\\"Availability\\":\\"true\\",\\"Standard Rate (NGN)\\":\\"17000\\"},\\"1622502000\\":{\\"Availability\\":\\"true\\"},\\"1622674800\\":{\\"Availability\\":\\"true\\"},\\"1625871600\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}},\\"ug1h5b4496zm22iw\\":{\\"1622674800\\":{\\"Availability\\":\\"true\\"},\\"1622761200\\":{\\"Availability\\":\\"true\\"}},\\"6n98x99g6l7gi6t1\\":{\\"1622674800\\":{\\"Inventory\\":\\"3\\"}}}',
+    ),
+  ),
 );

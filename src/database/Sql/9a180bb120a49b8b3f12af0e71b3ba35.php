@@ -496,6 +496,52 @@ return array (
           'avaliabilityid' => '2',
         ),
       ),
+      '3babbea6e5607a12d4b48c4e2c5c2e533b29023bdd331205ed96ff92162eb5bf2dc4f43d' => 
+      array (
+        'query' => 'INSERT INTO room_avaliability (propertyid,year,calendar) VALUES (:propertyid0,:year0,:calendar0)',
+        'bind' => 
+        array (
+          'propertyid0' => '7932ygx7xw6us9z1',
+          'year0' => 2021,
+          'calendar0' => '[]',
+        ),
+      ),
+      'ba13d65dea73b1d1a12a02dfd5f9a76b1004223382be1da828e889bae27c6dad3b098c58' => 
+      array (
+        'query' => 'UPDATE room_avaliability SET calendar = :calendar  WHERE avaliabilityid = :avaliabilityid ',
+        'bind' => 
+        array (
+          'calendar' => '{\\"v35kemg1dw53o2f1\\":{\\"1625698800\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}}}',
+          'avaliabilityid' => '4',
+        ),
+      ),
+      'ba13d65dea73b1d1a12a02dfd5f9a76b5328347844556c2af734414285fe4865b83a3d1b' => 
+      array (
+        'query' => 'UPDATE room_avaliability SET calendar = :calendar  WHERE avaliabilityid = :avaliabilityid ',
+        'bind' => 
+        array (
+          'calendar' => '{\\"v35kemg1dw53o2f1\\":{\\"1625698800\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}},\\"x2d3995wfc615fi1\\":{\\"1627167600\\":{\\"Availability\\":\\"false\\"}}}',
+          'avaliabilityid' => '4',
+        ),
+      ),
+      'ba13d65dea73b1d1a12a02dfd5f9a76bc4cbb14f3fef3c1c40acaa5ef64b9b7d28132b88' => 
+      array (
+        'query' => 'UPDATE room_avaliability SET calendar = :calendar  WHERE avaliabilityid = :avaliabilityid ',
+        'bind' => 
+        array (
+          'calendar' => '{\\"v35kemg1dw53o2f1\\":{\\"1625698800\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}},\\"x2d3995wfc615fi1\\":{\\"1627167600\\":{\\"Availability\\":\\"true\\"}}}',
+          'avaliabilityid' => '4',
+        ),
+      ),
+      'ba13d65dea73b1d1a12a02dfd5f9a76bad4ead3a8ca177a80805ba6bdcf3bb7ac45b28f9' => 
+      array (
+        'query' => 'UPDATE room_avaliability SET calendar = :calendar  WHERE avaliabilityid = :avaliabilityid ',
+        'bind' => 
+        array (
+          'calendar' => '{\\"66p1y9wk6wx1841h\\":{\\"1622588400\\":{\\"Availability\\":\\"true\\",\\"Standard Rate (NGN)\\":\\"17000\\"},\\"1622502000\\":{\\"Availability\\":\\"true\\"},\\"1622674800\\":{\\"Availability\\":\\"true\\"},\\"1625871600\\":{\\"Standard Rate (NGN)\\":\\"15000\\"}},\\"ug1h5b4496zm22iw\\":{\\"1622674800\\":{\\"Availability\\":\\"true\\"},\\"1622761200\\":{\\"Availability\\":\\"true\\"}},\\"6n98x99g6l7gi6t1\\":{\\"1622674800\\":{\\"Inventory\\":\\"3\\"}}}',
+          'avaliabilityid' => '2',
+        ),
+      ),
     ),
   ),
 );

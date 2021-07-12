@@ -187,10 +187,10 @@ class Avaliability implements ResourceInterface
         if ($rooms->rowCount() > 0) while($room = $rooms->fetch(FETCH_OBJ)) :
 
             // check for room in reservation
-            $reservations = db('reservation')->get('checkindate,checkoutdate,rooms,booking,checkedin')
+            $reservations = db('reservation')->get('checkindate,checkoutdate,rooms,booking,checkedin,checkedout')
             ->where('cancelled = ? and noshow = ?')
             ->bind(0,0)
-            ->concat("and (checkindate = :cday or checkoutdate = :cday or (checkoutdate > :cday and checkoutdate <= :tom)) and (rooms LIKE '%$roomCategoryId%') and property = :pid")
+            ->concat("and (checkindate = :cday or checkoutdate = :cday or (checkoutdate > :cday and checkoutdate <= :tom)) and (rooms LIKE '%$roomCategoryId%') and property = :pid and checkedout = 0")
             ->bind(['cday' => $day, 'tom' => $tomorrow, 'pid' => $propertyId])
             ->go();
 
@@ -203,12 +203,24 @@ class Avaliability implements ResourceInterface
                 // check room and number
                 if ($roomCategory->room == $roomCategoryId && $roomCategory->number == $room->number) :
 
-                    $result[$room->number][] = (object) [
+                    $data = (object) [
                         'checkin'   => intval($row->checkindate),
                         'checkout'  => intval($row->checkoutdate),
                         'checkedin' => intval($row->checkedin),
                         'booking'   => $row->booking
                     ];
+
+
+                    // checked out??
+                    if ($data->checkedin == 1) :
+
+                        // add checked out
+                        $data->checkedout = $row->checkedout;
+
+                    endif;
+
+                    // push data
+                    $result[$room->number][] = $data;
 
                 endif;
 
@@ -218,7 +230,7 @@ class Avaliability implements ResourceInterface
             $lodging = db('lodging')->get('booking,checkin,checkout,checkincount,checkedout,rooms')
             ->where('checkedout = ?')
             ->bind(0)
-            ->concat("and (checkin = :cday or checkout = :cday or (checkout > :cday and checkout <= :tom)) and (rooms LIKE '%$room->roomid%') and propertyid = :pid")
+            ->concat("and (checkin = :cday or checkout = :cday or (checkout > :cday and checkout <= :tom)) and (rooms LIKE '%$room->roomid%') and propertyid = :pid and checkedout = 0")
             ->bind(['cday' => $day, 'tom' => $tomorrow, 'pid' => $propertyId])
             ->go();
 
@@ -307,6 +319,8 @@ class Avaliability implements ResourceInterface
                 foreach ($resultArray as $row) :
 
                     if (isset($row->checkedout)) :
+
+                        if ($roomNumber == 103) var_dump($row);
 
                         // avaliable in lodging table
                         if ($row->checkout == $day) :
@@ -459,6 +473,18 @@ class Avaliability implements ResourceInterface
 
                         endif;
 
+                    elseif ($row->checkedin == 1) :
+
+                        if (isset($row->checkedout) && $row->checkedout == 0) :
+
+                            // show room cat
+                            $avaliability--;
+
+                            // remove now
+                            if (isset($avaliableRooms[$roomNumber])) : unset($avaliableRooms[$roomNumber]); endif;
+
+                        endif;
+
                     endif;
 
                 endforeach;
@@ -540,7 +566,7 @@ class Avaliability implements ResourceInterface
 
         // print data
         render([
-            'avaliability'  => $avaliability,
+            'avaliability'  => ($avaliability < 0 ? 0 : $avaliability),
             'rooms'         => $avaliableRooms
         ]);
     }
